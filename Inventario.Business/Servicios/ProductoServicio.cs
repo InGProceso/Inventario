@@ -10,11 +10,19 @@ namespace Inventario.Business.Servicios
 {
     public class ProductoServicio : IProductoServicio
     {
-        InventarioContext context = new InventarioContext();
+        private readonly InventarioContext context;
+        public ProductoServicio(InventarioContext context)
+        {
+            this.context = context;
+        }
         public ProductoDTO Get(int productoId)
         {
            var producto= context.Productos.Find(productoId);
-            return ProductoMapper.Map(producto); 
+            if (producto != null)
+            {
+                return ProductoMapper.Map(producto);
+            }
+            else return null;
         }
     }
 }
