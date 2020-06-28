@@ -8,9 +8,5 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Inventario.DataAccessLayer\Inventario.DataAccessLayer.csproj" />
-  </ItemGroup>
-
 
 </Project>
