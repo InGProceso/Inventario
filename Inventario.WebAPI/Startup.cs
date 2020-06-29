@@ -32,11 +32,21 @@ namespace Inventario.WebAPI
             services.AddDbContext<InventarioContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Inventario")));
             services.AddScoped<IProductoServicio, ProductoServicio>();
             services.AddControllers();
+
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Inventario");
+            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
