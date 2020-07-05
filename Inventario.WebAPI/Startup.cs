@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Inventario.Business.Contratos;
 using Inventario.Business.Servicios;
 using Inventario.DataAccessLayer.Entidades;
@@ -32,7 +33,7 @@ namespace Inventario.WebAPI
             services.AddDbContext<InventarioContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Inventario")));
             services.AddScoped<IProductoServicio, ProductoServicio>();
             services.AddControllers();
-
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen();
         }
 
